@@ -16,7 +16,8 @@ Feature: LoginFeature
     And I enter "<username>" and "<password>"
     And I click login button
     Then I should see the userform page
+    Then Close browser
     Examples:
-      | username | password   |
-      | execute  | automation |
-      | admin    | admin      |
+      | username      | password      |
+      | execute       | automation    |
+      | administrator | administrator |

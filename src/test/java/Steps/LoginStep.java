@@ -63,7 +63,7 @@ public class LoginStep {
         driver.findElement(By.name("FirstName")).sendKeys("Ala");
         driver.findElement(By.name("MiddleName")).sendKeys("Ben Salah");
 
-        driver.findElement(By.name("generate")).click() ;
+        //driver.findElement(By.name("generate")).click() ;
 
 
     }
@@ -75,7 +75,7 @@ public class LoginStep {
     }*/
 
     @And("I enter the following details for login")
-    public void iEnterTheFollowingDetailsForLogin(DataTable table) {
+    public void iEnterTheFollowingDetailsForLogin(DataTable table) throws InterruptedException {
         List<List<String>> data = table.cells();
 
         List<User> users = table.asList(User.class);
@@ -96,14 +96,22 @@ public class LoginStep {
 
 
     @And("^I enter \"([^\"]*)\" and \"([^\"]*)\"$")
-    public void iEnterUsernameAndPassword(String username, String password) {
+    public void iEnterUsernameAndPassword(String username, String password) throws InterruptedException {
         //driver.findElement(By.name("UserName")).sendKeys(username);
         //driver.findElement(By.name("Password")).sendKeys(password);
         LoginPage page = new LoginPage(driver);
         page.Login(username,password);
+        Thread.sleep(1000);
 
         //System.out.println("Username is : " + username);
         //System.out.println("Password is : " + password);
+    }
+
+    @Then("Close browser")
+    public void closeBrowser() throws InterruptedException {
+        Thread.sleep(3000);
+        driver.quit();
+        driver=null ;
     }
 
 

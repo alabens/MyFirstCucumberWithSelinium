@@ -21,9 +21,10 @@ public class LoginPage {
         PageFactory.initElements(driver,this);
     }
 
-    public void Login (String userName, String password){
+    public void Login (String userName, String password) throws InterruptedException {
         textUserName.sendKeys(userName);
-        textUserName.sendKeys(password);
+        Thread.sleep(500);
+        textPassword.sendKeys(password);
     }
 
     public void ClickLogin(){
